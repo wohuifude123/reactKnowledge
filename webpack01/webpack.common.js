@@ -8,6 +8,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const webpack = require('webpack');// 热加载需要的 webpack
 
+
+
 module.exports = {
     /*
     entry: {
@@ -39,6 +41,27 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.js$/,
+                // include 表示哪些目录中的 .js 文件需要进行 babel-loader
+                // exclude 表示哪些目录中的 .js 文件不要进行 babel-loader
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env', 'react', 'stage-0']
+                    }
+                }
+            },
+            {
+                test:/\.jsx?$/,
+                exclude:/node_modules/,
+                loader:'babel-loader',
+                query:{
+                    // presets:['es2015','react']
+                    presets:['env', 'react', 'stage-0']
+                }
             }
         ]
     },
@@ -49,9 +72,11 @@ module.exports = {
             // title: 'Production'
             title: 'Caching'
         }),
+        /*
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common' // 指定公共 bundle 的名称。
         }),
+        */
         new webpack.HotModuleReplacementPlugin(), // 热加载的插件
         /*
         以下是由社区提供的，一些对于代码分离很有帮助的插件和 loaders：
@@ -69,7 +94,17 @@ module.exports = {
 
             第二个选择是使用 HashedModuleIdsPlugin，推荐用于生产环境构建
          */
-        new webpack.HashedModuleIdsPlugin(),
+        // new webpack.HashedModuleIdsPlugin(),
+        /*
+            将第三方库（library）（例如 lodash 或 react）提取到单独的 vendor chunk 文件中，
+            是比较推荐的做法，这是因为，它们很少像本地的源代码那样频繁修改。
+            因此通过实现以上步骤，利用客户端的长效缓存机制，可以通过命中缓存来消除请求，
+            并减少向服务器获取资源，同时还能保证客户端代码和服务器端代码版本一致。
+            这可以通过使用新的 entry（入口）起点，以及再额外配置一个 CommonsChunkPlugin 实例的组合方式来实现
+        */
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        }),
         /*
             然而 CommonsChunkPlugin 有一个较少有人知道的功能是，能够在每次修改后的构建结果中，
             将 webpack 的样板(boilerplate)和 manifest 提取出来。通过指定 entry 配置中未用到的名称，
@@ -77,22 +112,15 @@ module.exports = {
          */
         new webpack.optimize.CommonsChunkPlugin({
             name: 'runtime'
-        }),
-        /*
-            将第三方库（library）（例如 lodash 或 react）提取到单独的 vendor chunk 文件中，
-            是比较推荐的做法，这是因为，它们很少像本地的源代码那样频繁修改。
-            因此通过实现以上步骤，利用客户端的长效缓存机制，可以通过命中缓存来消除请求，
-            并减少向服务器获取资源，同时还能保证客户端代码和服务器端代码版本一致。
-            这可以通过使用新的 entry（入口）起点，以及再额外配置一个 CommonsChunkPlugin 实例的组合方式来实现
-         */
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
+        })
     ],
     // 修改配置文件，告诉开发服务器（dev server）在哪里查找文件
     output: {
-        //filename: '[name].bundle.js',
-        filename: '[name].[chunkhash].js',
+        filename: '[name].bundle.js',
+        // filename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist')
     }
 };
+
+
+

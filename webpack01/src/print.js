@@ -1,6 +1,6 @@
 export default function printMe() {
     // console.log('I get called from print.js!');
-    console.log('友好的显示')
+    console.log('123456')
 }
 
 
