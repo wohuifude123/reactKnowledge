@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
 var config  = {
     //此处指明路口文件位置
     //entry: './main.js',
@@ -23,7 +25,7 @@ var config  = {
         // contentBase: './dist',//tell the dev server where to look for files
         hot: true,
         inline:true,
-        // historyApiFallback: true, //不跳转
+        historyApiFallback: true, //不跳转
         port:7700
 
     },
@@ -38,6 +40,11 @@ var config  = {
             name: 'vendor'
         })
         */
+        new HtmlWebpackPlugin({
+          filename: 'index.html',
+          template: 'index.html',
+          inject: true
+        }),
     ],
     //定义了对模块的处理逻辑，这里可以用loaders定义一系列的加载器，以及一些正则，
     //当需要加载的文件匹配test的正则时，会调用后面的loader对文件进行处理，
