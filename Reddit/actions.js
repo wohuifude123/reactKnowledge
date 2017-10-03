@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch'
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
-export const INVALIDATE_SUBREDDIT  = 'INVALIDATE_SUBREDDIT '
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
 
 export function selectSubreddit(subreddit) {
     return {
@@ -14,7 +14,7 @@ export function selectSubreddit(subreddit) {
 
 export function invalidateSubreddit(subreddit) {
     return {
-        type: INVALIDATE_SUBREDDIT ,
+        type: INVALIDATE_SUBREDDIT,
         subreddit
     }
 }
@@ -38,7 +38,7 @@ function receivePosts(subreddit, json) {
 function fetchPosts(subreddit) {
     return dispatch => {
         dispatch(requestPosts(subreddit))
-        return fetch(`http://www.reddit.com/r/${subreddit}.json`)
+        return fetch(`https://www.reddit.com/r/${subreddit}.json`)
             .then(response => response.json())
             .then(json => dispatch(receivePosts(subreddit, json)))
     }

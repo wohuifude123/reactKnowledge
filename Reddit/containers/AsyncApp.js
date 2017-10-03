@@ -1,6 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions'
+import {
+    selectSubreddit,
+    fetchPostsIfNeeded,
+    invalidateSubreddit
+} from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
@@ -16,15 +21,16 @@ class AsyncApp extends Component {
         dispatch(fetchPostsIfNeeded(selectedSubreddit))
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
-            const { dispatch, selectedSubreddit } = nextProps
+    componentDidUpdate(prevProps) {
+        if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
+            const { dispatch, selectedSubreddit } = this.props
             dispatch(fetchPostsIfNeeded(selectedSubreddit))
         }
     }
 
     handleChange(nextSubreddit) {
         this.props.dispatch(selectSubreddit(nextSubreddit))
+        this.props.dispatch(fetchPostsIfNeeded(nextSubreddit))
     }
 
     handleRefreshClick(e) {
@@ -35,38 +41,32 @@ class AsyncApp extends Component {
         dispatch(fetchPostsIfNeeded(selectedSubreddit))
     }
 
-    render () {
+    render() {
         const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
         return (
             <div>
-                <Picker value={selectedSubreddit}
-                        onChange={this.handleChange}
-                        options={[ 'reactjs', 'frontend' ]} />
+                <Picker
+                    value={selectedSubreddit}
+                    onChange={this.handleChange}
+                    options={['reactjs', 'frontend']}
+                />
                 <p>
                     {lastUpdated &&
                     <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
                         {' '}
-            </span>
-                    }
+            </span>}
                     {!isFetching &&
-                    <a href='#'
-                       onClick={this.handleRefreshClick}>
+                    <a href="#" onClick={this.handleRefreshClick}>
                         Refresh
-                    </a>
-                    }
+                    </a>}
                 </p>
-                {isFetching && posts.length === 0 &&
-                <h2>Loading...</h2>
-                }
-                {!isFetching && posts.length === 0 &&
-                <h2>Empty.</h2>
-                }
+                {isFetching && posts.length === 0 && <h2>Loading...</h2>}
+                {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
                 {posts.length > 0 &&
                 <div style={{ opacity: isFetching ? 0.5 : 1 }}>
                     <Posts posts={posts} />
-                </div>
-                }
+                </div>}
             </div>
         )
     }
