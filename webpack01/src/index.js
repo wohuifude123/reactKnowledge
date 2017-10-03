@@ -2,6 +2,9 @@ import _ from 'lodash';
 //import printMe from './print.js';
 import './styles.css';
 
+const tools = require('mathTools')
+const res = tools.add(1,2)
+
 function component() {
     var element = document.createElement('div');
     var btn = document.createElement('button');
@@ -9,7 +12,7 @@ function component() {
 
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
-    btn.innerHTML = '点击并且检测输出';
+    btn.innerHTML = '点击并且检测输出=='+res;
     // btn.onclick = printMe; // 这个需要注释掉，否则跟下面的懒加载冲突
 
     element.appendChild(br);
