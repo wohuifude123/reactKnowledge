@@ -44,7 +44,7 @@ var config  = {
           filename: 'index.html',
           template: 'index.html',
           inject: true
-        }),
+        })
     ],
     //定义了对模块的处理逻辑，这里可以用loaders定义一系列的加载器，以及一些正则，
     //当需要加载的文件匹配test的正则时，会调用后面的loader对文件进行处理，
