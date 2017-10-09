@@ -8,12 +8,29 @@ class AsyncApp extends Component {
     }
 
     render() {
+        const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
         return
+            <div>{isFetching.toLocaleString()}</div>
     }
 }
 
+
+
+
 function mapStateToProps(state) {
     const { postsBySubreddit } = state
+    const {
+        isFetching,
+        items: posts
+    } = {
+        isFetching: true,
+        items: []
+    }
+
+    return {
+        posts,
+        isFetching
+    }
 }
 
 export default connect(mapStateToProps)(AsyncApp)

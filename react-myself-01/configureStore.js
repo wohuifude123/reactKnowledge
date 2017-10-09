@@ -9,7 +9,7 @@ const loggerMiddleware = createLogger()
 // 寻找 reducer
 export default function configureStore(preloadedState) {
     return createStore(
-        rootReducer,
+        rootReducer, // 从 reducers.js 获取初始化 state
         preloadedState,
         applyMiddleware(
             thunkMiddleware,
