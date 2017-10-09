@@ -8,6 +8,7 @@ const loggerMiddleware = createLogger()
 // rootReducer 构造最原始的 store
 // 寻找 reducer
 export default function configureStore(preloadedState) {
+    console.log('preloadedState=='+preloadedState)
     return createStore(
         rootReducer, // 从 reducers.js 获取初始化 state
         preloadedState,
