@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 
 import EchartsTest01 from '../components/EchartsTest01.js';
 import EchartsTest02 from '../components/EchartsTest02.js';
-import advertise from '../components/advertise.js';
+import Advertise from '../components/Advertise.js';
+// import PieReact from '../components/PieReact.js';
 
+import '../styles/root.less';
 
 export default class Root extends Component {
     render() {
@@ -11,7 +13,7 @@ export default class Root extends Component {
             <div>
                 <EchartsTest01 />
                 <EchartsTest02 />
-                <advertise />
+                <Advertise />
             </div>
         )
     }

@@ -4,19 +4,17 @@
 import React, { Component } from 'react';
 
 // 引入 ECharts 主模块
+
 import echarts from 'echarts/lib/echarts';
 
 import 'echarts/lib/chart/pie';
 
-import 'echarts/lib/component/tooltip';
-import 'echarts/lib/component/title';
-
-class advertise extends Component {
+class Advertise extends Component {
     componentDidMount() {
-        var dom = document.getElementById("advertise");
+        var dom = document.getElementById("advertise01");
         var myChart = echarts.init(dom);
         var app = {};
-        option = null;
+        let option = null;
         option = {
             series : [
                 {
@@ -24,8 +22,8 @@ class advertise extends Component {
                     type: 'pie',
                     radius: '55%',
                     data:[
-                        {value:235, name:'超级视频'},
-                        {value:274, name:'无限灵魂'},
+                        {value:235, name:'超级视频123'},
+                        {value:274, name:'无限灵魂321'},
                         {value:310, name:'邮件营销'},
                         {value:335, name:'直接访问'},
                         {value:400, name:'搜索引擎'}
@@ -41,9 +39,9 @@ class advertise extends Component {
     }
     render() {
         return (
-            <div id="advertise" style={{ width: 400, height: 400 }}></div>
+            <div id="advertise01" style={{ width: 400, height: 400 }}></div>
         );
     }
 }
 
-export default advertise;
+export default Advertise;
