@@ -2,6 +2,8 @@ import _ from 'lodash';
 //import printMe from './print.js';
 import './styles.css';
 
+import './tools.js';
+
 const tools = require('mathTools')
 const res = tools.add(1,2)
 

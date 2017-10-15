@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import {
+    fetchPostsIfNeeded
+} from '../actions'
 
 import Async from '../components/Async'
 
 class AsyncApp extends Component {
     constructor(props) {
         super(props)
-        this.handleClick = this.handleClick.bind(this, "世界")
+        this.handleClick = this.handleClick.bind(this, 'reactjs')
         this.state = {abc:'人生的无限'}
     }
 
     handleClick(nextSubreddit) {
+        // 点击按钮传参 reactjs
         this.props.dispatch(fetchPostsIfNeeded(nextSubreddit))
         alert(nextSubreddit);
     }

@@ -47,18 +47,27 @@ function receivePosts(subreddit, json) {
     }
 }
 
+/*
 function requestPosts(subreddit) {
     return {
         type: REQUEST_POSTS,
         subreddit
     }
 }
+ */
+function requestPosts(subreddit) {
+    return {
+        type: REQUEST_POSTS,
+        subreddit: subreddit
+    };
+}
+
 
 // fetchPostsIfNeeded 需要用的函数
 
 function fetchPosts(subreddit) {
     return dispatch => {
-        dispatch(requestPosts(subreddit)) // 请求数据
+        dispatch(requestPosts(subreddit)) // 请求数据，寻找 reducer 处理 type: REQUEST_POSTS
         return fetch(`https://www.reddit.com/r/${subreddit}.json`)
             .then(response => response.json())
             .then(json => dispatch(receivePosts(subreddit, json))) // 接收数据
@@ -66,7 +75,12 @@ function fetchPosts(subreddit) {
 }
 
 function shouldFetchPosts(state, subreddit) {
-    const posts = state.postsBySubreddit[subreddit]
+    const posts = state.postsBySubreddit[subreddit];
+    console.log('shouldFetchPosts=开始');
+    console.log(posts);
+    console.log(subreddit);
+    console.log(state);
+    console.log('shouldFetchPosts=结束');
     if (!posts) {
         return true
     } else if (posts.isFetching) {
@@ -78,7 +92,8 @@ function shouldFetchPosts(state, subreddit) {
 
 export function fetchPostsIfNeeded(subreddit) {
     return (dispatch, getState) => {
-        if (shouldFetchPosts(getState(), subreddit)) {
+        // console.log('结果=='+shouldFetchPosts(getState(), subreddit));
+        if (shouldFetchPosts(getState(), subreddit)) { // true
             return dispatch(fetchPosts(subreddit))
         }
     }

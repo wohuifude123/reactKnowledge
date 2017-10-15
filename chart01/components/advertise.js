@@ -1,6 +1,4 @@
-/*
- *  功能：圆形
- */
+
 import React, { Component } from 'react';
 
 // 引入 ECharts 主模块
@@ -9,6 +7,7 @@ import echarts from 'echarts/lib/echarts';
 
 import 'echarts/lib/chart/pie';
 
+// <div id="advertise01" style={{ width: 400, height: 400 }}></div>
 class Advertise extends Component {
     componentDidMount() {
         var dom = document.getElementById("advertise01");
@@ -26,7 +25,7 @@ class Advertise extends Component {
                         {value:274, name:'无限灵魂321'},
                         {value:310, name:'邮件营销'},
                         {value:335, name:'直接访问'},
-                        {value:400, name:'搜索引擎'}
+                        {value:700, name:'搜索引擎'}
                     ]
                 }
             ]
@@ -39,7 +38,7 @@ class Advertise extends Component {
     }
     render() {
         return (
-            <div id="advertise01" style={{ width: 400, height: 400 }}></div>
+            <div id="advertise01"></div>
         );
     }
 }

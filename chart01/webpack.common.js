@@ -35,6 +35,8 @@ let config = {
     },
     */
     entry: {},
+    // Rule.loader is a shortcut to Rule.use: [ { loader } ]
+    // Rule.options and Rule.query are shortcuts to Rule.use: [ { options } ]
     module: {
         rules: [
             {
@@ -56,10 +58,13 @@ let config = {
             {
                 test:/\.jsx?$/,
                 exclude:/node_modules/,
+                /*
                 loader:'babel-loader',
                 query:{
                     presets:['env', 'react', 'stage-0']
                 }
+                */
+                loader:'babel-loader'
             }
         ]
     },
@@ -86,7 +91,8 @@ let config = {
     output: {
         filename: '[name].bundle.js',
         // filename: '[name].[chunkhash].js',
-        path: path.resolve(__dirname, 'static')
+        path: path.resolve(__dirname, 'static'),
+        libraryTarget: "umd"
     },
     externals: {
 

@@ -16,6 +16,7 @@
 
     var myChart = echarts.init(document.getElementById('main'));
 
+    // 使用 echarts 绘制世界地图的实例作为纹理
     var canvas = document.createElement('canvas');
     var mapChart = echarts.init(canvas, null, {
         width: 4096,
@@ -36,11 +37,14 @@
             {
                 type: 'map',
                 map: 'world',
+
+                // 绘制完整尺寸的 echarts 实例
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
                 boundingCoords: [[-180, 90], [180, -90]],
+
                 data:[
                     {name : 'Afghanistan', value : 28397.812},
                     {name : 'Angola', value : 19549.124},
@@ -251,6 +255,7 @@
     };
 
     myChart.setOption(option);
+
 </script>
 
 

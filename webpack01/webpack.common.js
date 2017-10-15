@@ -68,10 +68,14 @@ module.exports = {
     plugins: [
         // 每次都会清理 dist 文件夹的内容
         new CleanWebpackPlugin(['dist']),
+
+
         new HtmlWebpackPlugin({
             // title: 'Production'
             title: 'Caching'
         }),
+
+
         /*
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common' // 指定公共 bundle 的名称。

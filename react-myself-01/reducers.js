@@ -19,11 +19,8 @@ function posts(
     },
     action
 ) {
+    console.log("action.type=="+action.type)
     switch (action.type) {
-        case INVALIDATE_SUBREDDIT:
-            return Object.assign({}, state, {
-                didInvalidate: true
-            })
         case REQUEST_POSTS:
             return Object.assign({}, state, {
                 isFetching: true,
@@ -42,14 +39,29 @@ function posts(
 }
 
 // 初始化 state
+// action ({ type: '@@redux/INIT' })
 
-function postsBySubreddit(state = {}, action) {
+function postsBySubreddit(state = {abc: 123}, action) {
     switch (action.type) {
         case RECEIVE_POSTS:
+            console.log("接收数据了")
         case REQUEST_POSTS:
-            return Object.assign({}, state, {// 请求，增加state
+            console.log("action.subreddit=="+action.subreddit)
+            let ob1 = Object.assign({}, state, {// 请求，增加state
                 [action.subreddit]: posts(state[action.subreddit], action)
             })
+            for(var i in ob1)
+            {
+                console.log(i+"="+ob1[i])
+                if(typeof(ob1[i])=='object')
+                {
+                    for(var j in ob1[i])
+                    {
+                        console.log(j+"="+ob1[i][j])
+                    }
+                }
+            }
+            return ob1;
         default:
             return state
     }
