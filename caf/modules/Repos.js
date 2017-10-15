@@ -1,5 +1,5 @@
 import React from 'react'
-// let createReactClass = require('create-react-class');
+let createReactClass = require('create-react-class');
 import { Link } from 'react-router'
 /*
 export default createReactClass({
@@ -44,3 +44,6 @@ export default React.createClass({
         )
     }
 })
+
+
+

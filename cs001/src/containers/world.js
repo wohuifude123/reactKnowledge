@@ -8,7 +8,7 @@ var mapChart = echarts.init(canvas, null, {
 });
 
 mapChart.setOption({
-    backgroundColor: '#fff',
+    backgroundColor: 'aqua',
     visualMap: {
         show: false,
         min: 0,
@@ -216,7 +216,7 @@ mapChart.setOption({
 option = {
     globe: {
         baseTexture: mapChart,
-        heightTexture: "/asset/get/s/data-1491889019097-rJQYikcpl.jpg",
+        heightTexture: " ",
 
         displacementScale: 0.1,
 

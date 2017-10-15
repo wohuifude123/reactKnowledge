@@ -4,7 +4,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 
 import App from '../modules/App'
 import About from '../modules/About'
-import Repos from '../modules/Repos'
+import Repos from '../modules/Repos.js'
 
 /*
 render((
@@ -57,6 +57,7 @@ render((
     <li><NavLink to="/repos">Repos</NavLink></li>
 </ul>
  */
+
 
 import Home from '../modules/Home'
 
@@ -128,3 +129,5 @@ import { IndexLink } from 'react-router'
 答案是可以，加一个属性就行那就是 onlyActiveOnIndex
 
  */
+
+

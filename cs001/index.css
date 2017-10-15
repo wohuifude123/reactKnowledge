@@ -11,9 +11,9 @@ blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,
     background-color: blueviolet;
 }
 .data{
-    width: 200px;
+    width: 300px;
     height: 1080px;
-    background-color: red;
+    background-color: red!important;
     z-index: 70;
     float: left;
     margin-left: 0;
@@ -21,11 +21,13 @@ blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,
 
 
 #earth{
-    width: 1000px;
+    width: 1920px;
     height: 1080px;
     float: left;
     /* margin-left: -200px; */
-    margin-left: 0;
+    margin-left: -300px;
+    /* background-color: aqua!important; */
+
 }
 
 
@@ -36,6 +38,6 @@ blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,
     background-color: blue;
     z-index: 70;
     float: left;
-    margin-left: 1420px;
+    margin-left: -300px;
 }
 
